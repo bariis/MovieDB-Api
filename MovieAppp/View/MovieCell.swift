@@ -37,7 +37,7 @@ class MovieCell: UICollectionViewCell {
         label.text = "Baris Ertas"
       
         label.adjustsFontSizeToFitWidth = true
-      //  label.lineBreakMode = .byTruncatingHead
+        label.lineBreakMode = .byTruncatingHead
         //label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
        // label.sizeToFit()
