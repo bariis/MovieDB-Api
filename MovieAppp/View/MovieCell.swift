@@ -11,7 +11,6 @@ import UIKit
 class MovieCell: UICollectionViewCell {
     
     
-    
     let movieImageView: UIImageView = {
        let iv = UIImageView()
         iv.backgroundColor = .groupTableViewBackground
@@ -35,14 +34,15 @@ class MovieCell: UICollectionViewCell {
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16)
         label.text = "Baris Ertas"
-      
-        label.adjustsFontSizeToFitWidth = true
-        label.lineBreakMode = .byTruncatingHead
+        label.textAlignment = .center
+      label.adjustsFontSizeToFitWidth = true
+      //  label.adjustsFontSizeToFitWidth = true
+       // label.lineBreakMode = .byTruncatingHead
         //label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-       // label.sizeToFit()
+       label.numberOfLines = 0
+        label.sizeToFit()
       //  label.minimumScaleFactor = 0.5
-     //   cell.movieNameLabel.adjustsFontSizeToFitWidth = true
+     //  cell.movieNameLabel.adjustsFontSizeToFitWidth = true
         return label
     }()
     

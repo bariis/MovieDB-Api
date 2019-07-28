@@ -46,8 +46,7 @@ class MovieController: UICollectionViewController {
                         let url = Request.shared.imagePath + movie.poster_path
                         
                         Request.shared.fetchImage(with: url, completion: { (result) in
-                            
-
+                        
                             switch result {
                             case .failure(let error):
                                 print(error)
@@ -96,6 +95,21 @@ extension MovieController {
         cell.movieImageView.image = movieImages[indexPath.row]
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = MovieDetailsController()
+        navigationController?.pushViewController(controller, animated: true)
+   
+       let movie = movies[indexPath.row]
+
+        controller.movieInfoLabel.text = movie.overview
+        controller.movieNameLabel.text = movie.title
+        controller.movieDetailImageView.image = movieImages[indexPath.item]
+        
+    
+    }
+    
+    
 }
 
 extension MovieController: UICollectionViewDelegateFlowLayout {
