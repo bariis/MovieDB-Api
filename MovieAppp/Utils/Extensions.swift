@@ -17,8 +17,8 @@ extension UIColor {
         
     }
     
-    static func mainPink() -> UIColor {
-        return UIColor.rgb(red: 233, green: 150, blue: 122)
+    static func mainColor() -> UIColor {
+        return UIColor.rgb(red: 123, green: 104, blue: 238)
     }
     
 }
@@ -27,9 +27,9 @@ extension UIColor {
 extension UIView {
     
     func center(inView view: UIView){
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = true
         self.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        self.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = false
+        self.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {

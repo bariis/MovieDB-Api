@@ -13,45 +13,9 @@ class Request {
     let Base_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=883a273f2209782464db67ece72bd299&language=en-US"
     
     let imagePath = "https://image.tmdb.org/t/p/w500"
-    let ornek = "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
     
     static let shared = Request()
-    
-//    func fetchMovie(completion: @escaping ([Movie]?, Error?) -> Void ){
-//
-//      //  var movie = [Movie]()
-//
-//        guard let url = URL(string: Base_URL) else { return }
-//
-//        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//
-//            //handle error
-//            if let error = error {
-//                print("Failed to fetch data with error: ", error.localizedDescription)
-//                completion(nil,error)
-//                return
-//            }
-//
-//            guard let jsonData = data else {
-//                print("asdasdas")
-//                return }
-//
-//            do{
-////                guard let resultArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [AnyObject] else { return }
-//
-//                let movie = try JSONDecoder().decode([Movie].self, from: jsonData)
-//
-//               //movie.append(resultArray)
-//
-//                completion(movie,nil)
-//
-//            }catch let error {
-//                print("Failed to create json with error ", error.localizedDescription)
-//            }
-//        }.resume()
-//    }
-    
-    
+ 
     func fetchData(completion: @escaping (Result<[Results],Error>) -> ()){
      
         guard let url = URL(string: Base_URL) else { return }
@@ -67,9 +31,8 @@ class Request {
             guard let jsonData = data else {return }
             
             do{
-                //                guard let resultArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [AnyObject] else { return }
+                    let movie = try JSONDecoder().decode(Movie.self, from: jsonData)
                 
-                let movie = try JSONDecoder().decode(Movie.self, from: jsonData)
                 let movieInfo = movie.results
                 
                 completion(.success(movieInfo))
@@ -80,9 +43,7 @@ class Request {
             
             
             }.resume()
-        
-        
-        
+
     }
     
      func fetchImage(with url: String, completion: @escaping (Result<UIImage,Error>) -> Void){

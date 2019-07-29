@@ -12,7 +12,8 @@ class MovieDetailsController: UIViewController {
     
     let movieDetailImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.backgroundColor = .groupTableViewBackground
+        
         return iv
     }()
     
@@ -20,16 +21,19 @@ class MovieDetailsController: UIViewController {
        let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.text = "Baris Ertas"
-        label.backgroundColor = .groupTableViewBackground
+        label.sizeToFit()
+        label.numberOfLines  = 0
+        label.adjustsFontSizeToFitWidth = true
+        
         return label
     }()
     
     let movieInfoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.backgroundColor = .red
+        label.sizeToFit()
         label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -41,21 +45,19 @@ class MovieDetailsController: UIViewController {
     
     
     func configureViewComponents(){
-        view.backgroundColor = .yellow
-        navigationController?.navigationBar.tintColor = .green
+        view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .white
         
         view.addSubview(movieDetailImageView)
-        movieDetailImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 250, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: view.frame.height / 2 - 200)
+        movieDetailImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width:0, height: view.frame.height / 2 - 50 )
         
         
         view.addSubview(movieNameLabel)
-        movieNameLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: view.frame.height / 2 - 30, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: view.frame.width, height: 30)
+        movieNameLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: view.frame.height / 2 + 20, paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: view.frame.width, height: 30)
         
         view.addSubview(movieInfoLabel)
-        movieInfoLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: view.frame.height / 2 + 20
+        movieInfoLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: view.frame.height / 2 + 50
             , paddingLeft: 30, paddingBottom: 0, paddingRight: 30, width: view.frame.width, height: 150)
         
     }
-    
-    
 }

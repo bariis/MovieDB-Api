@@ -22,10 +22,7 @@ class MovieController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(123123123123)
-        print(movieImages.count)
-        print(movies.count)
-        
+
         configureViewComponents()
         fetchMovie()
     }
@@ -68,13 +65,12 @@ class MovieController: UICollectionViewController {
     
     func configureViewComponents(){
         
-        collectionView.backgroundColor = .rgb(red: 205, green: 92, blue: 92)
+        collectionView.backgroundColor = .rgb(red: 72, green: 61, blue: 139)
         
-        navigationController?.navigationBar.barTintColor = .mainPink()
-        navigationController?.navigationBar.isTranslucent = false
-        //navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barTintColor = .mainColor()
+        navigationController?.navigationBar.isTranslucent = true
         navigationItem.title = "Now Showing Movies"
-        
+
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
     }
@@ -90,7 +86,7 @@ extension MovieController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCell
-       // cell.movie = movies[indexPath.itxem]
+      
         cell.movieNameLabel.text = movies[indexPath.row].title
         cell.movieImageView.image = movieImages[indexPath.row]
         return cell

@@ -10,27 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieAppp/Networking/API.swift"
-            timestampString = "585953967.1159461"
+            timestampString = "586054925.1712331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "fetchData(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieAppp/Networking/API.swift"
-            timestampString = "585953967.116042"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "fetchData(completion:)"
             landmarkType = "7">
          </BreakpointContent>

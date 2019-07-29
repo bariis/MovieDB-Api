@@ -17,32 +17,28 @@ class MovieCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         return iv
     }()
-    
-    lazy var movieNameContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = .mainPink()
-       // movieNameLabel.font = UIFont.systemFont(ofSize: 40)
-       // movieNameLabel.adjustsFontSizeToFitWidth = true
-        view.addSubview(movieNameLabel)
-        movieNameLabel.center(inView: view)
-       
-        return view
-    }()
+//
+//    lazy var movieNameContainer: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .mainPink()
+//       // movieNameLabel.font = UIFont.systemFont(ofSize: 40)
+//       // movieNameLabel.adjustsFontSizeToFitWidth = true
+//        view.addSubview(movieNameLabel)
+//       // movieNameLabel.center(inView: view)
+//        movieNameLabel.
+//        return view
+//    }()
     
     let movieNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.backgroundColor = .mainColor()
         label.font = UIFont.systemFont(ofSize: 16)
         label.text = "Baris Ertas"
         label.textAlignment = .center
       label.adjustsFontSizeToFitWidth = true
-      //  label.adjustsFontSizeToFitWidth = true
-       // label.lineBreakMode = .byTruncatingHead
-        //label.lineBreakMode = .byWordWrapping
        label.numberOfLines = 0
         label.sizeToFit()
-      //  label.minimumScaleFactor = 0.5
-     //  cell.movieNameLabel.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -66,8 +62,8 @@ class MovieCell: UICollectionViewCell {
         addSubview(movieImageView)
         movieImageView.anchor(top: topAnchor, left: leftAnchor, bottom:  nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 36)
         
-        addSubview(movieNameContainer)
-        movieNameContainer.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 36)
+        addSubview(movieNameLabel)
+        movieNameLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 36)
     }
     
     
