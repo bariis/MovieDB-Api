@@ -16,6 +16,7 @@ class MovieController: UICollectionViewController {
     
     var movies = [Results]()
     var movieImages = [UIImage]()
+    let message = "baris ertas"
  
     
     // MARK: Init
