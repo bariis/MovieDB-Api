@@ -43,6 +43,11 @@ class MovieDetailsController: UIViewController {
         configureViewComponents()
     }
     
+    func setupDetails(with movie: Results){
+        movieNameLabel.text = movie.title
+        movieInfoLabel.text = movie.overview
+        movieDetailImageView.setImage(with: "\(Request.shared.imagePath)\(movie.poster_path)")
+    }
     
     func configureViewComponents(){
         view.backgroundColor = .white

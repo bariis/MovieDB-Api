@@ -15,9 +15,8 @@ class MovieController: UICollectionViewController {
     // MARK: - Properties
     
     var movies = [Results]()
-    var movieImages = [UIImage]()
-    let message = "baris ertas"
- 
+    var filteredMovies = [Results]()
+    
     
     // MARK: Init
     
@@ -26,6 +25,8 @@ class MovieController: UICollectionViewController {
 
         configureViewComponents()
         fetchMovie()
+        searchBarImplementation()
+        
     }
     
     // API
@@ -37,31 +38,15 @@ class MovieController: UICollectionViewController {
             case .failure(let error):
                 print(error)
             case .success(let movieInfo):
+                self.movies = movieInfo
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
                 
-                    self.movies = movieInfo
-                    self.movies.forEach({ (movie) in
-                        
-                        let url = Request.shared.imagePath + movie.poster_path
-                        
-                        Request.shared.fetchImage(with: url, completion: { (result) in
-                        
-                            switch result {
-                            case .failure(let error):
-                                print(error)
-                            case .success(let image):
-                                self.movieImages.append(image)
-                                
-                                DispatchQueue.main.async {
-                                   self.collectionView.reloadData()
-                                }
-                            }
-                        })
-                    })
             }
         }
     }
 
-    
     // MARK: - Helper Functions
     
     func configureViewComponents(){
@@ -75,38 +60,82 @@ class MovieController: UICollectionViewController {
         collectionView.register(MovieCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
     }
+    
+     let searchController = UISearchController(searchResultsController: nil)
+    
+    func searchBarImplementation(){
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Movies"
+        searchController.searchBar.tintColor = .black
+        searchController.searchBar.isTranslucent = false
+        searchController.searchBar.backgroundColor = .white
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+    }
+
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+    func filterContentForSearchText(_ searchText: String, scope: String = "All"){
+        filteredMovies = movies.filter({ (movie: Results) -> Bool in
+            return movie.title.lowercased().contains(searchText.lowercased())
+
+        })
+
+        collectionView.reloadData()
+    }
+
 }
 
 
 extension MovieController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+      if isFiltering(){
+            return filteredMovies.count
+        }
         return movies.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCell
-      
-        cell.movieNameLabel.text = movies[indexPath.row].title
-        cell.movieImageView.image = movieImages[indexPath.row]
+        
+        let movie: Results
+        if isFiltering(){
+            movie = filteredMovies[indexPath.row]
+        }
+        else{
+            movie = movies[indexPath.row]
+        }
+
+        cell.setup(with: movie)
         return cell
+
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = MovieDetailsController()
         navigationController?.pushViewController(controller, animated: true)
    
-       let movie = movies[indexPath.row]
-
-        controller.movieInfoLabel.text = movie.overview
-        controller.movieNameLabel.text = movie.title
-        controller.movieDetailImageView.image = movieImages[indexPath.item]
+        let movie: Results
+        if isFiltering(){
+            movie = filteredMovies[indexPath.row]
+        }else{
+            movie = movies[indexPath.row]
+        }
+       
+       controller.setupDetails(with: movie)
         
-    
     }
-    
-    
 }
 
 extension MovieController: UICollectionViewDelegateFlowLayout {
@@ -125,6 +154,12 @@ extension MovieController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+extension MovieController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+}
 
 

@@ -54,6 +54,11 @@ class MovieCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setup(with movie: Results){
+        movieNameLabel.text = movie.title
+      movieImageView.setImage(with: "\(Request.shared.imagePath)\(movie.poster_path)")
+    }
+    
     
     func configureViewComponents(){
          self.layer.cornerRadius = 10
