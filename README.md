@@ -2,7 +2,9 @@
 
 This is my first iOS project.
 
-Simple Movies App with MVC using The Movie DB API written in Swift 5
+Simple movie application with MVC design patter using TheMovieDB-API written in Swift 5
+
+No dependencies were used. I have used urlSession to fetch movie data and new Result type was used.
 
 This app shows now-showing movies.
 
